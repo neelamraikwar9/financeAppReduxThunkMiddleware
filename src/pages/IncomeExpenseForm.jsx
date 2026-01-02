@@ -1,19 +1,36 @@
 import {useDispatch} from "react-redux";
 import { useState } from "react";
-import { addEntry } from "../actions";
+import { addEntry, 
+  addExpenses
+ } from "../actions";
 
 export const IncomeExpenseForm = () => {
   const dispatch = useDispatch();
   const [description, setDiscription] = useState("");
   const [amount, setAmount] = useState("");
-  const [entryType, setEntryType] = useState("");
+  let  [entryType, setEntryType] = useState("");
 
   function handleAddEntry(e) {
     e.preventDefault();
 
     console.log(entryType, 'entryType');
+    console.log(description, amount, 'checkingDesAm');
 
+    if(entryType === "income"){
     dispatch(addEntry({description, amount: parseFloat(amount), entryType}))//will dispatch discription, amount entry, forms data; 
+    } else{
+    dispatch(addExpenses({description, amount: parseFloat(amount), entryType}))//will dispatch discription, amount entry, forms data; 
+    }
+
+
+
+    // if(entryType === "income"){
+    // dispatch(addEntry({description, amount: parseFloat(amount)}))
+    // } else {
+    //   dispatch(addExpenses({description, amount: parseFloat(amount)})) 
+    // }
+
+
     setDiscription("");//clearing the fields after dispatching; 
     setAmount("");
     setEntryType("income");
@@ -51,7 +68,7 @@ export const IncomeExpenseForm = () => {
             onChange={(e) => setEntryType(e.target.value)}
           >
             <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="expenses">Expense</option>
           </select>
         </div>
         <br />

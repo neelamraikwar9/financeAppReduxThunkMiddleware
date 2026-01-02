@@ -10,18 +10,50 @@ export const addEntry = (entry) => async (dispatch) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(entry),
-      }
+      },
     ); //making post call;
 
     const data = await response.json(); //once we have respnse will do this;
     if (data.success === true) {
       console.log(data);
       dispatch({ type: "ADD_ENTRY_SUCCESS", payload: data.data }); //once we have data then;
+
+
+      // dispatch({ type: "ADD_ENTRY_SUCCESS", payload: { ...data
+      //   //  entryType: "income"
+      //   }}); //once we have data then;
+
     }
   } catch (error) {
     console.log("Error adding entry", error);
   }
 };
+
+export const addExpenses = (entry) => async (dispatch) => {
+  // will add it into database and dispatch the code;
+
+  try {
+    const response = await fetch(
+      "https://finance-app-backend-Student-neoG.replit.app/add-expense",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(entry),
+      }
+    ); //making post call;
+
+    const data = await response.json(); //once we have response will do this;
+    if (data.success === true) {
+      console.log(data);
+      dispatch({ type: "ADD_ENTRY_SUCCESS", payload: data}); //once we have data then;
+    }
+  } catch (error) {
+    console.log("Error adding entry", error);
+  }
+};
+
 
 export const fetchIncome = () => async (dispatch) => {
   try {
