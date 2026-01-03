@@ -68,7 +68,7 @@ export const IncomeExpenseForm = () => {
             onChange={(e) => setEntryType(e.target.value)}
           >
             <option value="income">Income</option>
-            <option value="expenses">Expense</option>
+            <option value="expense">Expense</option>
           </select>
         </div>
         <br />
