@@ -72,6 +72,7 @@ export const IncomeExpenseForm = () => {
           </select>
         </div>
         <br />
+      
         <button onClick={handleAddEntry}>Add Entry</button>
       </form>
     </div>
